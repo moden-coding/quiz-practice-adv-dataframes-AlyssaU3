@@ -23,8 +23,19 @@ def merge_dataframes(df_left, df_right):
 
 def main():
     #csv data loaded
-    demo_data = pd.read_csv("hr_demographic_data.csv")
-    job_description = pd.read_csv("hr_job_description.csv")
+    demo_data = {
+        "Name": ["Alice", "Bob", "Carol", "Dave", "Eve", "Frank", "Grace", "Hank"],
+        "Age": ["30", "None", "25", "45", "38", "50", "29", "34"],
+        "Salary": ["70000", "80000", "None", "120000", "90000", "None", "61000", "73000"],
+        "Experience": ["5", "8", "2", "10", "9", "None", "3", "7"]
+    }
+
+    job_description = {
+        "Employee_Name": ["Alice", "Dave", "Hank", "Bob", "Grace", "Eve", "Frank", "Carol"],
+        "Department": ["HR", "Management", "Finance", "Marketing", "IT", "HR", "Finance", "IT"],
+        "Location": ["New York", "Houston", "San Diego", "Los Angeles", "San Antonio", "Phoenix", "Philadelphia", "Chicago"],
+        "Tenure": ["None", "None", "None", "None", "None", "None", "None", "None"]
+    }
 
     print(f"The total spent on salaries is {find_salary_sum(demo_data)}")
     merged_data = merge_dataframes(salary_data, job_description)
