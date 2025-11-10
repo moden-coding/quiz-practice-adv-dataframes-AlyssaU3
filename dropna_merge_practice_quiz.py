@@ -2,25 +2,29 @@ import pandas as pd
 
 #drops any rows or columns where ALL data is missing and returns the dataframe
 def drop_all_missing(df):
-    # Your code here
-    pass
+    droped= df.dropna(how="all")
+    return droped
 
 #drops any rows or columns where ANY data is missing and returns the dataframe
 def drop_any_missing(df):
-    # Your code here
-    pass
+    dropped= df.dropna(how="any")
+    return dropped
 
 #Takes in the demographic data DataFrame, returns the sum of the salary
 def find_salary_sum(df):
-    pass
-    
+    droped_non=df['Salary'].replace({'None':"0"})
+    droped_non=droped_non.astype({"Salary":int})
+    # droped_non= df["Salary"].replace({None:0})
+    # droped_non= droped_non.astype(int)
+    sumed= droped_non.sum()
+    return sumed
 
 #Merge two dataframes based on a common feature
 #Returns a dataframe where with any duplicate columns (i.e. same data) removed
 def merge_dataframes(df_left, df_right):
-    # Your code here
-    pass
-
+    merged= pd.merge(df_left,df_right, left_on='Name', right_on='Employee_Name')
+    merged=merged.drop("Employee_Name", axis=1)
+    return merged
 def main():
     #csv data loaded
     demo_data_dict = {
@@ -42,7 +46,7 @@ def main():
 
     print(f"The total spent on salaries is {find_salary_sum(demo_data)}")
     merged_data = merge_dataframes(demo_data, job_description)
-    only_complete_data = drop_any_missing(merged_data)
+    #only_complete_data = drop_any_missing(merged_data)
 
 
 
